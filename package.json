@@ -2,9 +2,14 @@
   "name": "e2e-testingsite",
   "version": "1.0.0",
   "description": "End to End Testing site for learning various testing frameworks",
-  "main": "index.js",
+  "main": "backend/server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
+    "start:prod": "node backend/server.js",
+    "start:dev": "concurrently \"nodemon --ignore 'frontend/*'\" \"npm run client\"",
+    "client": "cd frontend && npm run start",
+    "install": "cd frontend && npm install",
+    "build": "cd frontend && npm run build"
   },
   "repository": {
     "type": "git",
